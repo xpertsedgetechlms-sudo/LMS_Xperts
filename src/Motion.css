@@ -1,0 +1,185 @@
+/* Shared interaction system: motion only when the device allows it. */
+:root {
+  --motion-fast: 150ms;
+  --motion-base: 220ms;
+  --motion-enter: 360ms;
+  --motion-ease: cubic-bezier(.2,.75,.25,1);
+}
+
+.auth-layout::before,
+.auth-layout::after { animation: none; }
+
+.ad-shell :is(button, a, input, textarea, select),
+.auth-layout :is(button, a, input, textarea, select),
+.helpbot :is(button, input) {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ad-shell :is(button, a, input, textarea, select):focus-visible,
+.auth-layout :is(button, a, input, textarea, select):focus-visible,
+.helpbot :is(button, input):focus-visible {
+  outline: 3px solid #3f9b7a;
+  outline-offset: 3px;
+}
+
+.ad-shell button:disabled,
+.auth-layout button:disabled,
+.helpbot button:disabled { cursor: not-allowed; }
+
+@keyframes workspace-arrive {
+  from { opacity: 0; transform: translateY(9px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes card-arrive {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes message-arrive {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ad-content {
+    animation: workspace-arrive var(--motion-enter) var(--motion-ease) backwards;
+  }
+
+  .ao-metric,
+  .ad-stat {
+    animation: card-arrive 320ms var(--motion-ease) backwards;
+    transition: transform var(--motion-base) var(--motion-ease),
+      box-shadow var(--motion-base) ease,
+      border-color var(--motion-base) ease,
+      background-color var(--motion-base) ease;
+  }
+  :is(.ao-metric, .ad-stat):nth-child(2) { animation-delay: 35ms; }
+  :is(.ao-metric, .ad-stat):nth-child(3) { animation-delay: 70ms; }
+  :is(.ao-metric, .ad-stat):nth-child(4) { animation-delay: 105ms; }
+  :is(.ao-metric, .ad-stat):nth-child(5) { animation-delay: 140ms; }
+  :is(.ao-metric, .ad-stat):nth-child(6) { animation-delay: 175ms; }
+
+  .ad-panel,
+  .ad-next-class {
+    transition: box-shadow var(--motion-base) ease,
+      border-color var(--motion-base) ease;
+  }
+  .ad-course,
+  .ad-trainer,
+  .dw-task {
+    transition: transform var(--motion-base) var(--motion-ease),
+      box-shadow var(--motion-base) ease,
+      border-color var(--motion-base) ease;
+  }
+
+  .ad-shell :is(button, a),
+  .auth-layout :is(button, a),
+  .helpbot button {
+    transition: background-color var(--motion-fast) ease,
+      border-color var(--motion-fast) ease,
+      color var(--motion-fast) ease,
+      box-shadow var(--motion-base) ease,
+      transform var(--motion-base) var(--motion-ease);
+  }
+
+  .ad-sidebar nav button .dw-nav-icon {
+    transition: transform var(--motion-base) var(--motion-ease),
+      color var(--motion-fast) ease;
+  }
+
+  .ad-shell :is(input, textarea, select),
+  .auth-layout :is(input, textarea, select),
+  .helpbot input {
+    transition: border-color var(--motion-fast) ease,
+      background-color var(--motion-fast) ease,
+      box-shadow var(--motion-base) ease;
+  }
+  .ad-shell :is(input, textarea, select):focus,
+  .auth-layout :is(input, textarea, select):focus,
+  .helpbot input:focus {
+    border-color: #6aa68b;
+    box-shadow: 0 0 0 4px #3885600c;
+  }
+
+  .ad-table-wrap tbody tr {
+    transition: background-color var(--motion-fast) ease;
+  }
+  .dw-course-row,
+  .ao-class-list > article,
+  .ao-announcements > article,
+  .ao-schedule-list > div {
+    transition: background-color var(--motion-fast) ease;
+  }
+
+  .dw-editor,
+  .ao-compose,
+  .dw-checkout,
+  .dw-course-player {
+    animation: workspace-arrive 280ms var(--motion-ease) backwards;
+  }
+  .dw-notice,
+  .auth-message:not(:empty),
+  .helpbot-message {
+    animation: message-arrive 220ms ease-out backwards;
+  }
+
+  .ad-progress i,
+  .ad-chart-row i { transition: width 400ms var(--motion-ease); }
+
+  :is(.ad-primary, .account-logout, .ao-metric, .ad-stat):active:not(:disabled),
+  .login-section button[type='submit']:active:not(:disabled),
+  .helpbot-launcher:active {
+    transform: translateY(0) scale(.985);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ad-table-wrap tbody tr:hover { background-color: #f3f8f5; }
+  .ad-table-wrap tbody tr:focus-within { background-color: #f3f8f5; }
+  .dw-course-row:hover,
+  .ao-class-list > article:hover,
+  .ao-announcements > article:hover,
+  .ao-schedule-list > div:hover { background-color: #f8fbf9; }
+  .ad-text-button:hover,
+  .ao-join:hover,
+  .dw-exit:hover { color: #185c3c; text-decoration: underline; text-underline-offset: 4px; }
+  .ad-sidebar nav button:not(.active):hover { background: #eef5f1; color: #287354; }
+  .ao-action-row:hover { background: #f5faf7; }
+  .dw-player-grid > nav > button:not(.selected):hover { background: #eef5f1; border-color: #b5d2c0; }
+  .auth-switch button:not(.is-active):hover { background: #ffffff9c; color: #246e50; }
+  .portal-options button:not(.portal-active):hover { background: #f0f7f3; border-color: #aacdb9; color: #286747; }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .ao-metric:hover,
+  .ad-stat:hover {
+    transform: translateY(-3px);
+    border-color: #a5cbb5;
+    box-shadow: 0 10px 24px #234c5710;
+  }
+  .ad-course:hover,
+  .ad-trainer:hover,
+  .dw-task:hover {
+    transform: translateY(-3px);
+    border-color: #b6d3c2;
+    box-shadow: 0 10px 24px #234c570c;
+  }
+  .ad-primary:hover:not(:disabled),
+  .account-logout:hover:not(:disabled),
+  .helpbot-launcher:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 16px #194f3820;
+  }
+  .ad-sidebar nav button:hover .dw-nav-icon { transform: translateX(2px); }
+  .ad-text-button:hover { transform: translateX(2px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-layout *, .auth-layout::before, .auth-layout::after,
+  .ad-shell *, .ad-shell *::before, .ad-shell *::after,
+  .helpbot *, .helpbot *::before, .helpbot *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .login-section button[type='submit']:hover { transform: none; }
+}

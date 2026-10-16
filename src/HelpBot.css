@@ -1,0 +1,259 @@
+.helpbot {
+  position: fixed;
+  right: max(20px, env(safe-area-inset-right));
+  bottom: max(20px, env(safe-area-inset-bottom));
+  z-index: 1000;
+  font-family: 'Inter', Arial, sans-serif;
+  line-height: 1.5;
+  color: #19354c;
+}
+
+.helpbot button,
+.helpbot input {
+  font: inherit;
+}
+
+.helpbot-launcher {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 50px;
+  margin-left: auto;
+  padding: 12px 20px;
+  border: 1px solid #214c68;
+  border-radius: 30px;
+  background: #173857;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 8px 25px #17385724;
+  cursor: pointer;
+}
+
+.helpbot-launcher:hover {
+  background: #215078;
+}
+
+.helpbot-panel {
+  display: flex;
+  flex-direction: column;
+  width: min(380px, calc(100vw - 40px));
+  height: min(600px, calc(100dvh - 110px));
+  margin-bottom: 12px;
+  overflow: hidden;
+  border: 1px solid #dce6ed;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 20px 70px #17385726;
+}
+
+.helpbot-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 18px 16px;
+  background: #173857;
+  color: white;
+}
+
+.helpbot-header h2 {
+  margin: 0;
+  color: white;
+  font-size: 17px;
+  letter-spacing: -0.3px;
+}
+
+.helpbot-header p {
+  margin: 4px 0 0;
+  color: #c6d9e8;
+  font-size: 11px;
+}
+
+.helpbot-close {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: #ffffff12;
+  color: white;
+  font-size: 26px !important;
+  cursor: pointer;
+}
+
+.helpbot-close:hover {
+  background: #ffffff25;
+}
+
+.helpbot-notice {
+  margin: 0;
+  padding: 10px 16px;
+  border-bottom: 1px solid #e1ebe6;
+  background: #f0f7f3;
+  color: #476654;
+  font-size: 10px;
+}
+
+.helpbot-messages {
+  flex: 1;
+  min-height: 90px;
+  padding: 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #f8fafc;
+}
+
+.helpbot-message {
+  max-width: 92%;
+  margin-bottom: 14px;
+  padding: 11px 13px;
+  border: 1px solid #e0e8ee;
+  border-radius: 13px 13px 13px 3px;
+  background: white;
+  overflow-wrap: anywhere;
+}
+
+.helpbot-speaker {
+  display: block;
+  margin-bottom: 4px;
+  color: #526b7d;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.helpbot-message p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.75;
+  white-space: pre-wrap;
+}
+
+.helpbot-user {
+  margin-left: auto;
+  border-color: #d6e9de;
+  border-radius: 13px 13px 3px 13px;
+  background: #eaf5ee;
+}
+
+.helpbot-topics {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: 7px;
+  max-height: 130px;
+  padding: 12px 14px;
+  overflow-y: auto;
+  border-top: 1px solid #e6edf2;
+}
+
+.helpbot-topics button {
+  min-height: 34px;
+  padding: 7px 10px;
+  border: 1px solid #d9e6df;
+  border-radius: 20px;
+  background: #f7fbf8;
+  color: #226545;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.helpbot-topics button:hover {
+  background: #e7f3eb;
+}
+
+.helpbot-form {
+  display: flex;
+  flex-shrink: 0;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid #e6edf2;
+}
+
+.helpbot-form input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #d4dfe8;
+  border-radius: 10px;
+  background: white;
+  color: #19354c;
+  font-size: 16px;
+}
+
+.helpbot-form input::placeholder {
+  font-size: 12px;
+}
+
+.helpbot-form button {
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 10px;
+  background: #177650;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.helpbot-form button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.helpbot button:focus-visible,
+.helpbot input:focus-visible,
+.helpbot-messages:focus-visible {
+  outline: 3px solid #46a88a;
+  outline-offset: 2px;
+}
+
+.helpbot-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .helpbot {
+    right: 12px;
+    bottom: max(12px, env(safe-area-inset-bottom));
+  }
+
+  .helpbot-panel {
+    width: calc(100vw - 24px);
+    height: min(570px, calc(100dvh - 94px));
+    border-radius: 16px;
+  }
+
+  .helpbot-launcher {
+    min-height: 46px;
+    padding: 10px 16px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .helpbot-panel {
+    animation: helpbot-enter 180ms ease-out;
+  }
+
+  @keyframes helpbot-enter {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}.helpbot-answer-links{display:grid;gap:8px;margin-top:12px}.helpbot-answer-links a{color:#146b4a;font-size:11px;text-decoration:underline;text-underline-offset:3px}.helpbot-support-bar{display:flex;gap:12px;justify-content:space-between;align-items:center;padding:10px 14px;border-top:1px solid #e4ece7;flex-shrink:0;background:#f5faf7}.helpbot-support-bar button,.helpbot-inline-support{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;border:0;background:none;color:#176c49;cursor:pointer;padding:6px 0}.helpbot-support-bar .helpbot-clear{color:#657b73;font-weight:400}.helpbot-inline-support{text-decoration:underline}.helpbot-handoff{padding:18px;overflow-y:auto;min-height:0;flex:1}.helpbot-back{border:0;background:none;font-size:11px!important;color:#386b57;padding:0;cursor:pointer}.helpbot-wa-icon{width:42px;height:42px;border-radius:12px;background:#e7f5eb;color:#187348;display:grid;place-items:center;margin-top:18px}.helpbot-handoff h3{margin:12px 0 6px;font-size:19px}.helpbot-handoff p{font-size:12px;line-height:1.7;color:#556d62}.helpbot-handoff label{display:grid;gap:8px;font-size:12px;font-weight:600;color:#284b3c}.helpbot-handoff textarea{width:100%;font:inherit;font-weight:400;font-size:13px;padding:12px;border:1px solid #cbded2;border-radius:10px;resize:vertical;min-height:100px;color:#1e3e31;background:white}.helpbot-handoff .helpbot-share-note{font-size:10px;color:#697e73}.helpbot-wa-open{display:flex;gap:8px;align-items:center;justify-content:center;padding:12px;background:#17784b;color:white!important;text-decoration:none;border-radius:10px;font-size:12px;font-weight:700}.helpbot-email{display:block;text-align:center;font-size:11px;color:#25644a;margin-top:14px;overflow-wrap:anywhere}.helpbot a:focus-visible,.helpbot textarea:focus-visible{outline:3px solid #46a88a;outline-offset:3px}.helpbot-panel{height:min(690px,calc(100dvh - 110px))}.helpbot-topics{max-height:100px}.helpbot-notice{flex-shrink:0}.helpbot-header{flex-shrink:0}@media(max-height:650px){.helpbot-topics{max-height:70px}.helpbot-header{padding:10px 14px}.helpbot-notice{font-size:9px;padding:7px 12px}.helpbot-messages{min-height:60px}.helpbot-support-bar{padding:5px 12px}.helpbot-form{padding:8px}}
