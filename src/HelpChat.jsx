@@ -1,0 +1,35 @@
+import { usePublicSettings } from './usePublicSettings'
+import { backendRequest } from './backendClient'
+import { useEffect,useRef,useState } from 'react'
+import { answerQuestion,helpContext,quickQuestions,whatsappUrl } from './helpKnowledge'
+import { readWorkspace } from './workspaceStorage'
+import './HelpBot.css'
+
+const greeting={role:'bot',text:'Hello! Welcome to XpertsEdge Technologies. Ask me about courses, fees, brochures or using the learning portal. For anything I cannot verify, I can help you contact the institute on WhatsApp.'}
+export default function HelpChat(){
+  const publicSettings=usePublicSettings()
+  const [catalogue,setCatalogue]=useState(null)
+  function currentContext(){const snapshot=readWorkspace();return helpContext({...snapshot,...(catalogue?{courses:catalogue}:{}),settings:{...snapshot.settings,...publicSettings}})}
+  const [open,setOpen]=useState(false),[input,setInput]=useState(''),[messages,setMessages]=useState([greeting]),[handoff,setHandoff]=useState(false),[draft,setDraft]=useState(''),[context,setContext]=useState(()=>helpContext(readWorkspace()))
+  useEffect(()=>{const controller=new AbortController();backendRequest('/api/courses',{signal:controller.signal}).then(setCatalogue).catch(()=>{});return()=>controller.abort()},[open])
+  const inputRef=useRef(null),logRef=useRef(null),launcherRef=useRef(null),draftRef=useRef(null)
+  useEffect(()=>{if(open)inputRef.current?.focus()},[open])
+  useEffect(()=>{if(open&&logRef.current)logRef.current.scrollTop=logRef.current.scrollHeight},[messages,open])
+  useEffect(()=>{if(handoff)draftRef.current?.focus();else inputRef.current?.focus()},[handoff])
+  function close(){setOpen(false);launcherRef.current?.focus()}
+  function ask(value){const question=value.trim();if(!question)return;const current=currentContext();setContext(current);const answer=answerQuestion(question,current,messages.filter(m=>m.role==='user').map(m=>m.text));setMessages(list=>[...list,{role:'user',text:question},{role:'bot',...answer}].slice(-40));setInput('');setHandoff(false)}
+  function prepareHandoff(){const current=currentContext();setContext(current);const last=[...messages].reverse().find(m=>m.role==='user');setDraft('Hello XpertsEdge Technologies, I need help'+(last?` with this question: ${last.text}`:' with a course or the learning portal.'));setHandoff(true)}
+  const whatsapp=whatsappUrl(context.settings.phone,draft)
+  return <div className="helpbot">{open&&<section id="xpertsedge-help" className="helpbot-panel" role="region" aria-labelledby="helpbot-title" onKeyDown={e=>{if(e.key==='Escape'){e.stopPropagation();if(handoff)setHandoff(false);else close()}}}>
+    <header className="helpbot-header"><div><h2 id="helpbot-title">XpertsEdge Help</h2><p>Course guidance · Learning support</p></div><button type="button" className="helpbot-close" aria-label="Close help chat" onClick={close}>×</button></header>
+    <p className="helpbot-notice">Answers use the course catalogue and portal guidance. No private account access. Please do not share passwords or payment credentials.</p>
+    {!handoff?<><div ref={logRef} className="helpbot-messages" role="log" aria-label="Help conversation" aria-live="polite" aria-relevant="additions" tabIndex={0}>{messages.map((m,i)=><div className={`helpbot-message helpbot-${m.role}`} key={i}><span className="helpbot-speaker">{m.role==='bot'?'XpertsEdge Help':'You'}</span><p>{m.text}</p>{m.links?.length>0&&<div className="helpbot-answer-links">{m.links.map(([label,url])=><a key={label+url} href={url} target={url.startsWith('/')?'_blank':undefined} rel={url.startsWith('/')?'noopener noreferrer':undefined} onClick={()=>{if(url.startsWith('#'))close()}}>{label} ↗</a>)}</div>}{m.unanswered&&<button className="helpbot-inline-support" onClick={prepareHandoff}>Ask the institute on WhatsApp</button>}</div>)}</div>
+    <div className="helpbot-topics" aria-label="Suggested questions">{quickQuestions.map(q=><button type="button" key={q} onClick={()=>ask(q)}>{q}</button>)}</div>
+    <form className="helpbot-form" onSubmit={e=>{e.preventDefault();ask(input)}}><label className="helpbot-sr-only" htmlFor="helpbot-input">Your help question</label><input ref={inputRef} id="helpbot-input" value={input} onChange={e=>setInput(e.target.value)} placeholder="Ask about courses or the LMS…" maxLength={500} autoComplete="off"/><button type="submit" disabled={!input.trim()}>Ask</button></form>
+    <div className="helpbot-support-bar"><button type="button" onClick={prepareHandoff}><WhatsAppIcon/> WhatsApp support</button><button type="button" className="helpbot-clear" onClick={()=>{setMessages([greeting]);setInput('');inputRef.current?.focus()}}>Clear chat</button></div></>:
+    <div className="helpbot-handoff"><button type="button" className="helpbot-back" onClick={()=>setHandoff(false)}>← Back to help chat</button><div className="helpbot-wa-icon"><WhatsAppIcon/></div><h3>Talk to the institute</h3><p>WhatsApp support<br/><strong>{context.settings.phone}</strong></p><label htmlFor="whatsapp-message">Review your message<textarea ref={draftRef} id="whatsapp-message" value={draft} onChange={e=>setDraft(e.target.value)} maxLength={1000} rows={5}/></label><p className="helpbot-share-note">Only the message above is passed to WhatsApp when you open it. The rest of your chat is not included. You can edit it and choose Send in WhatsApp.</p>{whatsapp?<a className="helpbot-wa-open" href={whatsapp} target="_blank" rel="noopener noreferrer"><WhatsAppIcon/> Open WhatsApp ↗</a>:<p role="alert">A valid WhatsApp support number has not been configured. Please email the institute.</p>}<a className="helpbot-email" href={`mailto:${context.settings.email}`}>Email {context.settings.email}</a><p className="helpbot-share-note">Replies depend on institute availability. WhatsApp must be available for this number; no automatic reply service is connected.</p></div>}
+  </section>}
+  <button ref={launcherRef} type="button" className="helpbot-launcher" aria-expanded={open} aria-controls="xpertsedge-help" onClick={()=>{if(open)close();else{setContext(helpContext(readWorkspace()));setOpen(true)}}}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l-2 2V11.5A8.5 8.5 0 0 1 10.5 3h2A8.5 8.5 0 0 1 21 11.5Z"/><path d="M7 10h9M7 14h6"/></svg>{open?'Close help':'Need help?'}</button></div>
+}
+
+export function WhatsAppIcon(){return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 11.5a9 9 0 0 1-13 8L3 21l1.5-5A9 9 0 1 1 21 11.5Z"/><path d="M8 7c-2 3 3 8 6 8l2-2-3-1-1 1-2-2 1-1-1-3Z"/></svg>}

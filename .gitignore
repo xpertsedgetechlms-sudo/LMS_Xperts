@@ -1,0 +1,51 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment values and local credentials
+.env
+.env.*
+!.env.example
+
+# Archived backend and authentication experiments are not part of this frontend
+/supabase/
+/work/*
+!/work/test-*.mjs
+
+# Local exports and editor/runtime state
+*.zip
+/.codex/
+/.agents/
+
+# Java backend build and local state
+/backend/target/
+/backend/.maven-user-home/
+/backend/.idea/
+*.iml
+
+
+# Private database archives
+/backend/backups/
+*.dump
+/deploy/secrets/

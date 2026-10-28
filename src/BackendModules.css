@@ -1,0 +1,50 @@
+.backend-modules { display: grid; gap: 20px; }
+.bm-toolbar,.bm-toolbar>div { display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+.bm-toolbar p { color:#637c70; margin:0; font-size:12px; }
+.bm-form fieldset { border:0; margin:0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+.bm-form legend { font-size:20px; font-weight:700; margin-bottom:20px; }
+.bm-form label { display:grid; gap:8px; color:#345446; font-size:13px; }
+.bm-form input,.bm-form select,.bm-form textarea { min-width:0; width:100%; border:1px solid #cdded3; border-radius:8px; padding:11px 12px; background:white; color:#183b56; font:inherit; }
+.bm-form textarea { min-height:110px; resize:vertical; }
+.bm-form small { color:#60776b; line-height:1.6; }
+.bm-form .wp-form-actions { grid-column:1/-1; }
+.bm-form .bm-check { display:flex; align-items:center; gap:10px; margin:12px 0; }
+.bm-form .bm-check input { width:auto; }
+.bm-row-actions { display:flex; flex-wrap:wrap; gap:10px; max-width:270px; }
+.bm-row-actions button,.bm-row-actions a { border:0; background:#eef6f0; color:#166544; padding:8px 10px; border-radius:7px; font-size:12px; text-decoration:none; }
+.backend-modules .bm-description { max-width:350px; white-space:normal; }
+.backend-modules td { max-width:430px; white-space:normal; overflow-wrap:anywhere; }
+.bm-summary { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:16px; margin:24px 0; }
+.bm-summary>div { padding:20px; border:1px solid #dbe9df; border-radius:12px; display:grid; gap:8px; }
+.bm-summary strong { font-size:28px; color:#176443; }
+.bm-summary span { font-size:12px; color:#63796c; }
+@media(max-width:700px) { .bm-form fieldset { grid-template-columns:1fr; } }
+
+.bm-preview video,.bm-preview img { display:block; max-width:100%; max-height:70vh; margin:18px auto 0; }
+.bm-preview iframe { width:100%; height:70vh; border:0; margin-top:18px; }
+
+.bl-full { grid-column:1/-1; }
+.bl-question-list { display:grid; gap:20px; }
+.bl-question { padding:20px; border:1px solid #dbe7df; border-radius:12px; display:grid; gap:14px; }
+.bl-question h3 { margin:0; }
+.bl-lesson-body { white-space:pre-wrap; overflow-wrap:anywhere; line-height:1.8; margin:20px 0; }
+.bl-course-filter { max-width:100%; padding:10px; margin-left:10px; border:1px solid #d5e3da; border-radius:8px; background:white; color:#234b38; }
+.bl-certificate { text-align:center; padding:40px; border:2px solid #cadccf; }
+.bl-certificate h3 { font-size:26px; color:#196544; }
+.bl-certificate .bm-row-actions { margin:auto; justify-content:center; }
+
+.bn-container { position:relative; }
+.bn-panel { position:absolute; right:0; top:calc(100% + 12px); z-index:30; width:min(380px,calc(100vw - 32px)); max-height:65vh; overflow:auto; padding:20px; background:white; border:1px solid #d5e4d9; border-radius:14px; box-shadow:0 16px 50px #173b3020; }
+.bn-panel h2 { margin:0; font-size:18px; }
+.bn-row { width:100%; display:grid; gap:8px; text-align:left; padding:16px 0; border:0; border-bottom:1px solid #e1eae4; background:white; color:#24513b; }
+.bn-row span { font-size:13px; line-height:1.5; white-space:pre-wrap; }
+.bn-row small { color:#278356; }
+.bn-row.is-read { opacity:.7; }
+
+.bl-receipt { padding:16px 0; border-bottom:1px solid #e1eae4; }
+
+.bl-certificate p { overflow-wrap:anywhere; }
+@media(max-width:720px) { .bn-panel { position:fixed; right:16px; top:70px; } .bl-certificate { padding:24px; } }
+
+.bm-form label { position:relative; }
+.bm-form .bm-check > .wp-required { display:none; }

@@ -1,0 +1,16 @@
+# Add to compose.production.yaml only AFTER creating the SMTP secret and config.
+services:
+  backend:
+    environment:
+      RECOVERY_ENABLED: "true"
+      NOTIFICATIONS_EMAIL_ENABLED: "true"
+      PUBLIC_APP_URL: https://${LMS_DOMAIN:?Set LMS_DOMAIN}
+      MAIL_FROM: ${MAIL_FROM:?Set the verified sending address}
+      SMTP_HOST: ${SMTP_HOST:?Set the SMTP host}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:?Set the SMTP username}
+    secrets:
+      - SMTP_PASSWORD
+secrets:
+  SMTP_PASSWORD:
+    file: ./deploy/secrets/smtp_password.txt

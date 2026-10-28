@@ -1,0 +1,24 @@
+{
+  "name": "xpertsedge-lms",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "test": "node work/test-lms-logic.mjs && node work/test-operations.mjs && node work/test-trainer.mjs && node work/test-student.mjs && node work/test-launch.mjs && node work/test-help.mjs && node work/test-backend-client.mjs"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "oxlint": "^1.81.0",
+    "vite": "^8.3.0"
+  }
+}

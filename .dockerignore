@@ -1,0 +1,14 @@
+**/node_modules
+**/target
+dist
+.git
+.env*
+**/*.local
+deploy/secrets
+**/*.dump
+**/backups
+work
+supabase
+**/*.log
+.codex
+.agents

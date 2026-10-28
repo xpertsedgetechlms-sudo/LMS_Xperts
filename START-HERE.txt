@@ -1,0 +1,31 @@
+XPERTSEDGE TECHNOLOGIES - DEPLOYMENT HANDOVER
+Prepared: 28 October 2026
+
+START HERE: deploy/DEPLOYMENT.md
+This is the combined frontend AND backend source release.
+
+CONTENTS
+src/, public/: latest React frontend, logo, course images and brochures.
+dist/: freshly built production frontend; never run this standalone without /api routing.
+backend/pom.xml, backend/src/: complete Spring Boot backend and Flyway SQL migrations.
+backend/Dockerfile: builds the backend JAR using Maven/JDK 21.
+deploy/Dockerfile.web, deploy/Caddyfile: build frontend and serve HTTPS with /api proxy.
+compose.production.yaml: frontend + backend + private PostgreSQL services.
+.env.example files: configuration templates only.
+docs/, deploy/EMAIL_SETUP.md: functional and operational notes.
+
+IMPORTANT
+- This archive contains source, NOT a prebuilt backend JAR. Docker/Maven builds the backend from backend/pom.xml. The backend is included.
+- No live passwords, local .env files, database dumps, node_modules, Git history or local backups are supplied.
+- Existing PostgreSQL accounts, content and uploads are NOT in this archive. Transfer a fresh backup privately following deploy/DEPLOYMENT.md. Do not overwrite an existing live database.
+- A fresh database requires secure initial Admin bootstrap; no default password is supplied.
+- Deploy the complete stack. Uploading dist/ to a static host alone will not provide login or database functions.
+- Configure final domain, HTTPS, DB secrets and same-origin /api routing.
+- Gmail SMTP activation/inbox testing remains pending; supply SMTP credentials privately on the server.
+- Live payment integration is deferred. Institute policy approval and real-content acceptance remain pending.
+- Frontend production build and lint passed for this release. Container startup, restore, HTTPS, email and full live acceptance must be verified on staging. This archive has not been deployed.
+
+LATEST UI FIX
+Admin login checks account role and reports a mismatched portal. Admin overview has Manage trainers / Manage students buttons. Trainer directory supports Add trainer, edit and disable through backend APIs.
+
+Use SHA256SUMS.txt to verify extracted file integrity.

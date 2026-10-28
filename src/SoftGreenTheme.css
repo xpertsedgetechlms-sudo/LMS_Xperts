@@ -1,0 +1,88 @@
+/* Theme C: Soft Green. Shared palette for every role and auth screen. */
+:root {
+  color-scheme: light;
+  --xe-bg:#edf6ef; --xe-surface:#fff; --xe-ink:#183b56;
+  --xe-muted:#536e66; --xe-green:#18834f; --xe-hover:#12663d;
+  --xe-tint:#e5f3e9; --xe-border:#d7e8dd; --xe-lime:#d5e52c;
+  --bg:var(--xe-bg); --text:var(--xe-muted); --text-h:var(--xe-ink);
+  --border:var(--xe-border); --accent:var(--xe-green);
+  --accent-bg:var(--xe-tint); --accent-border:var(--xe-border);
+  background:var(--xe-bg); color:var(--xe-ink);
+}
+body { background:var(--xe-bg); color:var(--xe-ink); }
+.auth-layout { background:var(--xe-bg); color:var(--xe-ink); }
+.auth-layout::before { background:radial-gradient(ellipse,#bfe4cb,transparent 70%); opacity:.45; }
+.auth-layout::after { background:radial-gradient(ellipse,#e0efb7,transparent 70%); opacity:.28; }
+.auth-layout .auth-story,.auth-layout .auth-panel { background:transparent; color:var(--xe-ink); }
+.auth-layout .auth-card { background:white; border-color:var(--xe-border); border-radius:20px; box-shadow:0 18px 60px #174f3210; }
+.auth-layout .auth-brand strong,.auth-layout .story-content h1,.auth-layout .login-section h2 { color:var(--xe-ink); }
+.auth-layout .auth-brand small,.auth-layout .story-description,.auth-layout .account-note,.auth-layout .auth-panel-footer { color:var(--xe-muted); }
+.auth-layout .story-content h1 span { color:var(--xe-green); }
+.auth-layout .story-badge { background:#e3f2e7; border-color:#c6e2cf; color:#226544; }
+.auth-layout .auth-switch,.auth-layout .portal-options { background:#edf5ef; }
+.auth-layout .auth-switch button,.auth-layout .portal-options button { color:var(--xe-muted); }
+.auth-layout .auth-switch button.is-active,.auth-layout .portal-options button.portal-active { background:#e2f2e7; color:#155f3c; border-color:#b8d9c4; box-shadow:0 2px 6px #174f3208; }
+.auth-layout .login-section label { color:var(--xe-ink); }
+.auth-layout .login-section input { background:#fcfefc; color:var(--xe-ink); border-color:var(--xe-border); }
+.auth-layout .login-section input:focus { border-color:var(--xe-green); box-shadow:0 0 0 3px #18834f16; }
+.auth-layout .login-section button[type=submit] { background:var(--xe-green); color:white; border-radius:10px; box-shadow:0 5px 16px #18834f1c; }
+.auth-layout .login-section button[type=submit]:hover { background:var(--xe-hover); }
+.auth-layout .login-section .auth-text-button,.auth-layout .password-toggle { color:var(--xe-hover); }
+.learning-shell,.ad-shell { --learn-blue:var(--xe-green); --learn-ink:var(--xe-ink); --learn-muted:var(--xe-muted); background:var(--xe-bg); color:var(--xe-ink); }
+.learning-shell .ad-sidebar,.learning-shell .wp-mobile-sidebar .ad-sidebar { background:white; color:var(--xe-ink); border-right:1px solid var(--xe-border); }
+.learning-shell .ad-brand,.learning-shell .wp-mobile-sidebar .ad-brand { color:var(--xe-ink); }
+.learning-shell .ad-brand img { background:white; border-color:var(--xe-border); }
+.learning-shell .ad-brand small,.learning-nav-group { color:#567767; }
+.learning-shell .ad-sidebar nav { scrollbar-color:#bed9c7 transparent; }
+.learning-shell .ad-sidebar nav button { color:#4d685d; }
+.learning-shell .ad-sidebar nav button:hover { background:#f0f8f2; color:#155f3c; }
+.learning-shell .ad-sidebar nav button.active { background:#e1f3e6; color:#155f3c; border-left-color:var(--xe-green); box-shadow:none; }
+.learning-shell .ad-sidebar-bottom,.learning-shell .wp-mobile-sidebar .ad-sidebar-bottom { border-color:var(--xe-border); color:#356148; }
+.learning-shell .ad-sidebar-bottom p,.learning-shell .ad-sidebar-bottom a { color:var(--xe-muted); }
+.learning-shell .ad-demo-dot { background:var(--xe-green); box-shadow:0 0 0 3px #e8f0be; }
+.learning-shell .wp-mobile-sidebar .wp-close-navigation { background:var(--xe-tint); color:var(--xe-hover); }
+.learning-shell .ad-topbar { background:#ffffffed; border-color:var(--xe-border); }
+.learning-shell .ad-breadcrumb,.learning-shell .ad-kicker,.learning-shell .ad-heading>div>p:last-child { color:var(--xe-muted); }
+.learning-shell .ad-heading h1,.learning-shell .ad-panel h2,.learning-shell .ad-panel h3 { color:var(--xe-ink); }
+.learning-shell .ad-panel,.learning-shell .ad-stat,.learning-shell .catalogue-card { background:white; border-color:var(--xe-border); border-radius:16px; box-shadow:0 4px 18px #1a573207; }
+.learning-shell .ad-panel:hover { box-shadow:0 4px 18px #1a573207; }
+.learning-shell .ad-stat { border-top-color:var(--xe-green); }
+.learning-shell .ad-primary { background:var(--xe-green); color:white; border-radius:10px; box-shadow:0 4px 12px #18834f16; }
+.learning-shell .ad-primary:hover { background:var(--xe-hover); }
+.learning-shell .ad-text-button,.learning-shell .pd-name-button { color:var(--xe-hover); }
+.learning-shell .ad-avatar,.learning-shell .ao-action-number,.learning-shell .dw-course-letter { background:var(--xe-tint); color:var(--xe-hover); }
+.learning-shell .ad-table-wrap th { background:#eef7f0; color:#426553; }
+.learning-shell .ad-table-wrap td { color:#496457; border-color:#e8f0eb; }
+.learning-shell .ad-table-wrap tbody tr:hover { background:#f4faf5; }
+.learning-shell .ad-search,.learning-shell .catalogue-search { background:white; border-color:var(--xe-border); color:var(--xe-muted); }
+.learning-shell .ad-search:focus-within,.learning-shell .catalogue-search:focus-within { outline-color:var(--xe-green); }
+.learning-shell .bm-form label,.learning-shell .bm-form legend { color:var(--xe-ink); }
+.learning-shell .bm-form input,.learning-shell .bm-form select,.learning-shell .bm-form textarea,.learning-shell .bl-course-filter { background:#fcfefc; border-color:var(--xe-border); color:var(--xe-ink); }
+.learning-shell .bm-form small,.learning-shell .bm-summary span,.learning-shell .bm-toolbar p { color:var(--xe-muted); }
+.learning-shell .bm-summary>div { background:#f7fcf8; border-color:var(--xe-border); border-radius:14px; }
+.learning-shell .bm-summary strong,.learning-shell .bl-certificate h3 { color:var(--xe-hover); }
+.learning-shell .bm-row-actions button,.learning-shell .bm-row-actions a { background:var(--xe-tint); color:var(--xe-hover); }
+.learning-shell .bl-question,.learning-shell .bn-panel { background:white; border-color:var(--xe-border); }
+.learning-shell .ao-metrics { background:white; border-color:var(--xe-border); border-radius:16px; }
+.learning-shell .ao-metric { background:white; border-color:var(--xe-border); }
+.learning-shell .ao-metric:hover { background:#f4faf5; }
+.learning-shell .ao-metric>strong { color:var(--xe-ink); }
+.learning-shell .ao-metric.ao-green>strong { color:var(--xe-hover); }
+.learning-shell .ao-metric>span,.learning-shell .ao-metric>small { color:var(--xe-muted); }
+.learning-shell .ad-progress i { background:var(--xe-green); }
+.learning-shell .catalogue-title,.learning-shell .catalogue-price { color:var(--xe-ink); }
+.learning-shell .catalogue-description,.learning-shell .catalogue-category { color:var(--xe-muted); }
+.learning-shell .learning-spotlight,.learning-shell .ad-next-class { background:linear-gradient(115deg,#173e36,#196340); }
+.learning-shell .spotlight-copy h2,.learning-shell .learning-spotlight h2 { color:white; }
+.learning-shell .spotlight-eyebrow,.learning-shell .signal-label { color:#e0eb9c; }
+.learning-shell .spotlight-copy>p:not(.spotlight-eyebrow) { color:#dcefe3; }
+.learning-shell .signal-ring { background:conic-gradient(var(--xe-lime) var(--progress),#41745a 0); }
+.learning-shell .signal-ring>div { background:#194d36; }
+.helpbot .helpbot-launcher,.helpbot .helpbot-header { background:var(--xe-hover); border-color:var(--xe-hover); color:white; }
+.helpbot .helpbot-launcher:hover { background:#0f5633; }
+.helpbot .helpbot-panel { border-color:var(--xe-border); }
+.launch-policy { background:white; border-color:var(--xe-border); color:var(--xe-ink); }
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible { outline-color:var(--xe-green); }
+@media(prefers-reduced-motion:no-preference) {
+  .learning-shell .ad-primary,.auth-layout .login-section button[type=submit] { transition:background-color 160ms ease,box-shadow 160ms ease; }
+}

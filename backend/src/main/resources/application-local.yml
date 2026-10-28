@@ -1,0 +1,6 @@
+# Local HTTP development only. Keep secure cookies enabled for HTTPS hosting.
+server:
+  servlet:
+    session:
+      cookie:
+        secure: false

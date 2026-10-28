@@ -1,0 +1,79 @@
+.catalogue-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e0e9e4;
+  border-radius: 16px;
+}
+.catalogue-card > .learning-cover { margin: 0; flex: none; border-radius: 0; }
+.catalogue-card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 14px;
+  padding: 24px;
+}
+.catalogue-card .catalogue-category { margin: 0; color: #587769; font-size: 12px; font-weight: 600; line-height: 1.5; }
+.catalogue-card .catalogue-title { margin: 0; color: #183b56; font-size: 21px; line-height: 1.35; letter-spacing: -.4px; min-height: 2.7em; overflow-wrap: anywhere; }
+.catalogue-card .catalogue-description { margin: 0; color: #657b88; font-size: 14px; line-height: 1.7; min-height: 5.1em; }
+.catalogue-card .catalogue-price { display: block; margin-top: auto; color: #183b56; font-size: 20px; line-height: 1.5; }
+.catalogue-actions { padding-top: 4px; }
+.catalogue-actions .ad-text-button { padding: 8px 0; }
+.catalogue-card-footer { padding: 0 24px 24px; }
+.catalogue-card-footer:empty { display: none; }
+.catalogue-card-footer .course-brochures.is-compact { margin: 0; padding: 18px 0 0; }
+.catalogue-card-footer .brochure-item { align-items: flex-start; flex-wrap: wrap; gap: 12px; }
+.catalogue-card-footer .brochure-description { flex: 1 1 150px; }
+.catalogue-card-footer .brochure-description strong { overflow-wrap: anywhere; }
+.catalogue-card-footer .brochure-actions { margin-left: 0; }
+@media (max-width: 720px) {
+  .catalogue-card-content { padding: 20px; }
+  .catalogue-card-footer { padding: 0 20px 20px; }
+  .catalogue-card .catalogue-title, .catalogue-card .catalogue-description { min-height: 0; }
+}
+@keyframes catalogue-arrive {
+  from { opacity: 0; translate: 0 12px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .catalogue-card {
+    animation: catalogue-arrive 420ms ease-out both;
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  }
+  .catalogue-card:nth-child(2) { animation-delay: 60ms; }
+  .catalogue-card:nth-child(3) { animation-delay: 120ms; }
+  .catalogue-card:nth-child(4) { animation-delay: 180ms; }
+  .catalogue-card .learning-cover img { transition: transform 400ms ease; }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .catalogue-card:hover, .catalogue-card:focus-within {
+    transform: translateY(-4px);
+    border-color: #a8cdb7;
+    box-shadow: 0 12px 28px #234c5714;
+  }
+  .catalogue-card:hover .learning-cover img { transform: scale(1.035); }
+}
+
+.learning-shell .ad-content.is-catalogue-page { max-width:1280px; padding:32px 32px 24px; }
+.is-catalogue-page .ad-heading { margin-bottom:28px; }
+.is-catalogue-page .ad-heading h1 { margin-bottom:10px; }
+.course-catalogue { width:100%; min-width:0; }
+.catalogue-toolbar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; margin:0 0 24px; }
+.catalogue-search { display:flex; align-items:center; gap:12px; width:min(100%,420px); padding:0 16px; border:1px solid #dce6e0; border-radius:12px; background:#fff; color:#7b9186; }
+.catalogue-search input { min-width:0; width:100%; padding:14px 0; border:0; background:transparent; color:#183b56; font:inherit; font-size:14px; outline:none; }
+.catalogue-search:focus-within { outline:2px solid #23855b; outline-offset:3px; }
+.catalogue-count { color:#657e70; font-size:13px; white-space:nowrap; }
+.catalogue-grid { gap:24px; align-items:stretch; }
+@supports (grid-template-rows: subgrid) {
+  .catalogue-grid > .catalogue-card { display:grid; grid-template-rows:subgrid; grid-row:span 3; row-gap:0; }
+}
+@media(max-width:1150px) { .catalogue-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:720px) {
+  .learning-shell .ad-content.is-catalogue-page { padding:24px 16px; }
+  .catalogue-grid { grid-template-columns:1fr; gap:20px; }
+  .catalogue-toolbar { gap:12px; margin-bottom:20px; }
+  .catalogue-search { width:100%; }
+  .catalogue-grid > .catalogue-card { display:flex; grid-row:auto; }
+}
